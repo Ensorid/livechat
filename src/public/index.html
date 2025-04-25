@@ -34,6 +34,12 @@
         let newDiv = document.createElement('div');
         newDiv.classList.add('myDiv');
 
+        let infoContainer = document.createElement('div');
+        infoContainer.style.display = 'flex';
+        infoContainer.style.justifyContent = 'space-between';
+        infoContainer.style.color = 'white';
+        infoContainer.style.fontSize = '15px';
+
         newDiv.innerHTML = text.replace(/\n/g, '<br>');
 
         let bottomText = document.createElement('div');
@@ -41,7 +47,6 @@
         bottomText.textContent = username; 
         bottomText.style.color = "white"
         bottomText.style.fontSize = "15px"
-        newDiv.appendChild(bottomText); 
 
 
         let bottomDate = document.createElement('div');
@@ -49,7 +54,12 @@
         bottomDate.textContent = date;
         bottomDate.style.color = "white"
         bottomDate.style.fontSize = "15px"
-        newDiv.appendChild(bottomDate); 
+
+        infoContainer.appendChild(bottomText);
+        infoContainer.appendChild(bottomDate);
+
+        newDiv.appendChild(infoContainer);
+
 
         let container = document.getElementById('container');
 
@@ -144,4 +154,8 @@
 
 </script>
 </html>
+
+
+
+
 
