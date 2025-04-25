@@ -41,7 +41,7 @@
         infoContainer.style.color = 'white';
         infoContainer.style.fontSize = '15px';
 
-        newDiv.innerHTML = text.replace(/\n/g, '<br>');
+        newDiv.innerHTML = escapeHTML(text).replace(/\n/g, '<br>');
 
         let bottomText = document.createElement('div');
         bottomText.classList.add('bottom-text');

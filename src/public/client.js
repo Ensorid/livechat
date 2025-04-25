@@ -8,6 +8,12 @@ const time = `${hour}:${minute}`
 const sendIcon = document.getElementById('send-icon');
 const messageInput = document.getElementById('message-box');
 
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
 function sendMessage() {
     const message = messageInput.value;
     const username = document.cookie
