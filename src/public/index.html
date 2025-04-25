@@ -18,7 +18,7 @@
     <div class="transparent-div"></div>
     <section id="stay-section">
         <div id="icon-div">
-            <i class="fas fa-paper-plane" id="send-icon" style="text-shadow: 0 0 3px blue;" onclick="sendMessage()"></i> <!-- Icône "send" -->
+            <i class="fas fa-paper-plane" id="send-icon" style="text-shadow: 0 0 3px blue;" onclick="addMessage()"></i> <!-- Icône "send" -->
         </div>
         <form action="" id="messageForm">
             <textarea name="message-box" id="message-box"></textarea>
@@ -42,7 +42,8 @@
             newDiv.style.alignSelf = 'flex-end';
 
         } else {
-            newDiv.style.alignSelf = 'flex-start';
+            newDiv.style.alignSelf = 'flex-start';    
+
         }
 
         container.appendChild(newDiv);
@@ -50,13 +51,19 @@
         document.getElementById('message-box').value = '';
     }
 
-    /*function addMessageFalse() {
+    function addMessageFalse() {
         const text = document.getElementById('message-box').value;
 
         if (text.trim() === '') {
             alert('Veuillez entrer un message valide');
             return; 
         }
+
+        let bottomText = document.createElement('div');
+        bottomText.classList.add('bottom-text');
+        bottomText.textContent = username;
+
+        newDiv.appendChild(bottomText);
 
         let newDiv = document.createElement('div');
         newDiv.classList.add('myDiv');
@@ -76,7 +83,7 @@
         container.appendChild(newDiv);
 
         document.getElementById('message-box').value = '';
-    }*/
+    }
 
 
 
