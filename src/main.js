@@ -1,8 +1,14 @@
 const express = require('express')
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('messages.db');
+const http = require('http')
+const socketIo = require('socket.io')
 const path = require('path')
+const sqlite3 = require('sqlite3').verbose();
+
+const db = new sqlite3.Database('messages.db');
+const server = http.createServer();
+const io = socketIo(server)
 const app = express()
+
 const port = 3000
 
 db.run(`CREATE TABLE IF NOT EXISTS messages (
@@ -19,6 +25,18 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+
+io.on('connection', (socket) => {
+  console.log('New user connected');
+
+  socket.on('sendMessage', (message) => {
+      io.emit('receiveMessage', message);
+  });
+
+  socket.on('disconnect', () => {
+      console.log('Un utilisateur est déconnecté');
+  });
+});
 
 app.get('/api/messages', async (req, res) => {
   try {
