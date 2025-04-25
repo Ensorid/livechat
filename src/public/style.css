@@ -3,6 +3,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 .title-h1 {
     text-align: center;
     font-size: 60px;
@@ -37,7 +41,7 @@ body {
     border-radius: 20px;
     font-size: 30px;
     vertical-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Roboto', sans-serif;
     margin: 20px;
     padding: 10px;
     border: solid blue 2px;
@@ -45,9 +49,10 @@ body {
 
 textarea {
     resize: none;
-    scrollbar-color: #888 #f1f1f1; /* Firefox */
+    scrollbar-color: #888 #f1f1f1;
     scrollbar-width: 30px;
     scrollbar-color: blue;
+    font-family: 'Roboto', sans-serif;
 }
 
 #icon-div {
