@@ -18,7 +18,7 @@
     <div class="transparent-div"></div>
     <section id="stay-section">
         <div id="icon-div">
-            <i class="fas fa-paper-plane" style="text-shadow: 0 0 3px blue;" onclick="addMessageFalse()"></i> <!-- Icône "send" -->
+            <i class="fas fa-paper-plane" style="text-shadow: 0 0 3px blue;" onclick="addMessage()"></i> <!-- Icône "send" -->
         </div>
         <form action="/submit-message" id="messageForm" method="post">
             <textarea name="message-box" id="message-box"></textarea>
@@ -29,7 +29,7 @@
 <script>
     let count = 0;
 
-    function addMessage(text) {
+    function addMessage(text, username) {
 
         let newDiv = document.createElement('div');
         newDiv.classList.add('myDiv');
@@ -38,12 +38,12 @@
 
         let container = document.getElementById('container');
 
-        if (index % 2 === 0) {
+        if (true_name == username) {
             newDiv.style.alignSelf = 'flex-start';  
-            index++
+
         } else {
             newDiv.style.alignSelf = 'flex-end';    
-            index++
+
         }
 
         container.appendChild(newDiv);
@@ -51,7 +51,7 @@
         document.getElementById('message-box').value = '';
     }
 
-    function addMessageFalse() {
+    /*function addMessageFalse() {
         const text = document.getElementById('message-box').value;
 
         if (text.trim() === '') {
@@ -77,9 +77,8 @@
         container.appendChild(newDiv);
 
         document.getElementById('message-box').value = '';
-    }
+    }*/
 
-    let index = 0
 
 
     function addAllMessages(list) {
@@ -141,13 +140,17 @@
         }
 
         printName(username); 
+        true_name = username;
     }
+
+    let true_name;
 
     function changeName() {
         const user_true_name = prompt("Enter your username :");
         if (user_true_name) {
             setCookie("username", user_true_name, 7); 
             printName(user_true_name);
+            true_name = user_true_name;
         }
     }
 
