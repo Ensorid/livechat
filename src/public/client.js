@@ -12,7 +12,7 @@ function sendMessage() {
 
     if (message.trim() !== '') {
         socket.emit('chatMessage', { username, message });
-        addMessage(message);
+        addMessage(message, username);
         messageInput.value = '';
     }
 };
@@ -20,6 +20,7 @@ function sendMessage() {
 socket.on('receiveMessage', (data) => {
     const { username, message } = data;
     console.log(`Message from ${username}: ${message}`);
+    addMessage(message, username);
 });
 
 socket.on('disconnect', () => {
