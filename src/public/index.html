@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1 class="title-h1">LiveChat</h1>
-    <div id="contain-name"></div>
+    <div id="contain-name" onclick="changeName()"></div>
     <div id="container"></div>
     <section id="stay-section">
         <div id="icon-div">
@@ -85,19 +85,73 @@
     }
 
     function printName(name) {
+        let container = document.getElementById('contain-name');
 
+        // Supprime les anciens noms s'il y en a
+        container.innerHTML = '';
+
+        // Crée et ajoute le nouveau nom
         let newDiv = document.createElement('div');
         newDiv.classList.add('userName');
-
         newDiv.textContent = name;
 
-
-        let container = document.getElementById('contain-name');
         container.appendChild(newDiv);
-
     }
 
-    printName("My Name")
+    let randomNumber
+
+    function generateRandomNumber() {
+        let randomNumber = Math.floor(Math.random() * 1000000000000);  
+        return randomNumber.toString().padStart(12, '0');  
+    }
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));  
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+
+    function getCookie(name) {
+        let decodedCookie = decodeURIComponent(document.cookie); 
+        let ca = decodedCookie.split(';'); 
+
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();  
+            if (c.indexOf(name + "=") == 0) {
+                return c.substring(name.length + 1, c.length); 
+            }
+        }
+        return ""; 
+    } 
+
+    function generateAndStoreUsername() {
+        let username = getCookie("username");
+
+        if (username === "") {
+            username = "user" + generateRandomNumber();
+            setCookie("username", username, 7);
+        }
+
+        printName(username); 
+    }
+
+    function changeName() {
+        const user_true_name = prompt("Enter your username :");
+        if (user_true_name) {
+            setCookie("username", user_true_name, 7); 
+            printName(user_true_name);
+        }
+    }
+
+
+
+    generateAndStoreUsername();
+
 
 
 
