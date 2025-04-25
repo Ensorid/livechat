@@ -10,12 +10,15 @@
     <title>LiveChat</title>
 </head>
 <body>
-    <h1 class="title-h1">LiveChat</h1>
-    <div id="contain-name" onclick="changeName()"></div>
+    <div class="header1"> 
+        <div id="contain-name" onclick="changeName()"></div>
+        <h1 class="title-h1">LiveChat</h1>
+    </div>
     <div id="container"></div>
+    <div class="transparent-div"></div>
     <section id="stay-section">
         <div id="icon-div">
-            <i class="fas fa-paper-plane" onclick="addMessageFalse()"></i> <!-- Icône "send" -->
+            <i class="fas fa-paper-plane" style="text-shadow: 0 0 3px blue;" onclick="addMessageFalse()"></i> <!-- Icône "send" -->
         </div>
         <form action="/submit-message" method="post">
             <textarea name="message-box" id="message-box"></textarea>
@@ -89,10 +92,8 @@
     function printName(name) {
         let container = document.getElementById('contain-name');
 
-        // Supprime les anciens noms s'il y en a
         container.innerHTML = '';
 
-        // Crée et ajoute le nouveau nom
         let newDiv = document.createElement('div');
         newDiv.classList.add('userName');
         newDiv.textContent = name;
