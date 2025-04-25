@@ -4,10 +4,10 @@ const socketIo = require('socket.io')
 const path = require('path')
 const sqlite3 = require('sqlite3').verbose();
 
+const app = express();
 const db = new sqlite3.Database('messages.db');
-const server = http.createServer();
-const io = socketIo(server)
-const app = express()
+const server = http.createServer(app);
+const io = socketIo(server);
 
 const port = 3000
 
@@ -85,7 +85,6 @@ function getLastMessages() {
   });
 }
 
-
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
