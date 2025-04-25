@@ -1,5 +1,10 @@
 const socket = io();
 
+const datetime = new Date();
+const hour = datetime.getHours();
+const minute = datetime.getMinutes();
+const time = `${hour}:${minute}`
+
 const sendIcon = document.getElementById('send-icon');
 const messageInput = document.getElementById('message-box');
 
@@ -12,7 +17,7 @@ function sendMessage() {
 
     if (message.trim() !== '') {
         socket.emit('chatMessage', { username, message });
-        addMessage(message, username);
+        addMessage(message, username, time);
         messageInput.value = '';
     }
 };
@@ -20,7 +25,7 @@ function sendMessage() {
 socket.on('receiveMessage', (data) => {
     const { username, message } = data;
     console.log(`Message from ${username}: ${message}`);
-    addMessage(message, username);
+    addMessage(message, username, time);
 });
 
 socket.on('disconnect', () => {
