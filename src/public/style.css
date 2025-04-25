@@ -8,7 +8,13 @@ body {
     font-size: 60px;
     font-weight: bold;
     align-self: flex-end;
-    margin: 10px;
+    margin: auto;
+    color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    vertical-align: center;
+    padding: 10px;
 
 }
 
@@ -125,3 +131,15 @@ textarea::-webkit-scrollbar-track:hover {
     height: 200px;
     background-color: transparent;
 }
+
+.header1 {
+    display: flex;
+    background-color: blue;
+    margin: 0px;
+    border-radius: 20px;
+    align-items: center;
+    position: relative;
+    vertical-align: center;
+}
+
+
