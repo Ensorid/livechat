@@ -1,10 +1,5 @@
 const socket = io();
 
-const datetime = new Date();
-const hour = datetime.getHours();
-const minute = datetime.getMinutes();
-const time = `${hour}:${minute}`
-
 const sendIcon = document.getElementById('send-icon');
 const messageInput = document.getElementById('message-box');
 
@@ -15,6 +10,12 @@ function escapeHTML(str) {
 }
 
 function sendMessage() {
+
+    const datetime = new Date();
+    const hour = datetime.getHours();
+    const minute = datetime.getMinutes();
+    const time = `${hour}:${minute}`
+
     const message = messageInput.value;
     const username = document.cookie
         .split('; ')
