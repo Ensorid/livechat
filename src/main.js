@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const port = 3030
+const port = 7894
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,9 +20,9 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.on('sendMessage', (message) => {
-      io.emit('receiveMessage', message);
-      console.log(`Message sent: ${message}`);
+  socket.on('chatMessage', (data) => {
+    console.log(`Message from ${data.username}: ${data.message}`);
+    socket.broadcast.emit('receiveMessage', data);
   });
 
   socket.on('disconnect', () => {

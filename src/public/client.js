@@ -1,25 +1,25 @@
 const socket = io();
 
-const messageForm = document.getElementById('message-form');
+const sendIcon = document.getElementById('send-icon');
 const messageInput = document.getElementById('message-box');
-const messagesContainer = document.getElementById('messages');
 
-messageForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+function sendMessage() {
     const message = messageInput.value;
     const username = document.cookie
         .split('; ')
         .find(row => row.startsWith('username='))
         ?.split('=')[1] || 'Anonymous';
 
-    socket.emit('chat message', { username, message });
-    messageInput.value = '';
-});
+    if (message.trim() !== '') {
+        socket.emit('chatMessage', { username, message });
+        addMessage(message);
+        messageInput.value = '';
+    }
+};
 
-socket.on('chat message', (data) => {
-    const messageElement = document.createElement('li');
-    messageElement.textContent = `${data.username}: ${data.message}`;
-    messagesContainer.appendChild(messageElement);
+socket.on('receiveMessage', (data) => {
+    const { username, message } = data;
+    console.log(`Message from ${username}: ${message}`);
 });
 
 socket.on('disconnect', () => {
