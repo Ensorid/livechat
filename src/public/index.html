@@ -36,6 +36,11 @@
 
         newDiv.innerHTML = text.replace(/\n/g, '<br>');
 
+        let bottomText = document.createElement('div');
+        bottomText.classList.add('bottom-text');
+        bottomText.textContent = username; 
+        newDiv.appendChild(bottomText); 
+
         let container = document.getElementById('container');
 
         if (username == true_name) {
@@ -52,41 +57,6 @@
 
         document.getElementById('message-box').value = '';
     }
-
-    function addMessageFalse() {
-        const text = document.getElementById('message-box').value;
-
-        if (text.trim() === '') {
-            alert('Veuillez entrer un message valide');
-            return; 
-        }
-
-        let bottomText = document.createElement('div');
-        bottomText.classList.add('bottom-text');
-        bottomText.textContent = username;
-
-        newDiv.appendChild(bottomText);
-
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('myDiv');
-
-        newDiv.innerHTML = text.replace(/\n/g, '<br>');
-
-        let container = document.getElementById('container');
-
-        if (index % 2 === 0) {
-            newDiv.style.alignSelf = 'flex-start';  
-            index++
-        } else {
-            newDiv.style.alignSelf = 'flex-end';    
-            index++
-        }
-
-        container.appendChild(newDiv);
-
-        document.getElementById('message-box').value = '';
-    }
-
 
 
     function addAllMessages(list) {
