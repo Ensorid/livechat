@@ -18,7 +18,7 @@
     <div class="transparent-div"></div>
     <section id="stay-section">
         <div id="icon-div">
-            <i class="fas fa-paper-plane" id="send-icon" style="text-shadow: 0 0 3px blue;" onclick="sendMessage()"></i> <!-- Icône "send" -->
+            <i class="fas fa-paper-plane" id="send-icon" style="text-shadow: 0 0 3px blue;" onclick="sendMessage()"></i> 
         </div>
         <form action="" id="messageForm">
             <textarea name="message-box" id="message-box"></textarea>
@@ -29,7 +29,7 @@
 <script>
     let count = 0;
 
-    function addMessage(text, username) {
+    function addMessage(text, username, date) {
 
         let newDiv = document.createElement('div');
         newDiv.classList.add('myDiv');
@@ -42,6 +42,14 @@
         bottomText.style.color = "white"
         bottomText.style.fontSize = "15px"
         newDiv.appendChild(bottomText); 
+
+
+        let bottomDate = document.createElement('div');
+        bottomDate.classList.add('bottom-text');
+        bottomDate.textContent = date;
+        bottomDate.style.color = "white"
+        bottomDate.style.fontSize = "15px"
+        newDiv.appendChild(bottomDate); 
 
         let container = document.getElementById('container');
 
